@@ -1,8 +1,9 @@
 class Player
-  attr_accessor :pieces
-
-  def initialize(name)
-    @name = name
-    @pieces = ['r1', 'r2', 'r3', 'r4']
+  attr_accessor :color, :pieces
+  def initialize(color)
+    @color = color
+    @pieces = ["#{color}1", "#{color}2", "#{color}3", "#{color}4"]
   end
+
 end
+

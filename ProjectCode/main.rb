@@ -1,13 +1,22 @@
 # frozen_string_literal: true
+# main.rb
+require_relative 'player'
+require_relative 'grid'
+require_relative 'game'
 
 class Main
-  game = Game.new
+  def self.run
+    puts "Welcome to Ludo!"
+    puts "================="
 
-  # Add a loop for the game turns (you can customize the exit condition)
-  while true
-    game.play_turn
+    ludo_game = Game.new
+    ludo_game.play
+
+    puts "Thanks for playing!"
   end
-
 end
+
+# Run the game
+Main.run
 
 
