@@ -1,14 +1,18 @@
 class Grid
+
+  attr_accessor :board
+
   def initialize
     @board = create_board
+
   end
 
   def create_board
     empty_cell = '◯'
-    player_red = ['r1', 'r2', 'r3', 'r4']
-    player_green = ['g1', 'g2', 'g3', 'g4']
-    player_yellow = ['y1', 'y2', 'y3', 'y4']
-    player_blue = ['b1', 'b2', 'b3', 'b4']
+    player_red = %w[r1 r2 r3 r4]
+    player_green = %w[g1 g2 g3 g4]
+    player_yellow = %w[y1 y2 y3 y4]
+    player_blue = %w[b1 b2 b3 b4]
     #player_cells = ['R', 'G', 'Y', 'B']
     safehouse_cell = '●'
     start_cell = '*'
@@ -76,14 +80,57 @@ class Grid
     return board
   end
 
+  def [](row, col)
+    @board[row][col]
+  end
+  def make_methods_public
+    public_send :each_with_index
+  end
+
+  def find_piece_position(piece)
+    translated_piece = translate_piece_name(piece)
+
+    @board.each_with_index do |row, row_index|
+      row.each_with_index do |cell, col_index|
+        return [row_index, col_index] if cell == translated_piece
+      end
+    end
+
+    nil  # Return nil if the piece is not found on the board
+  end
+
+  def translate_piece_name(piece)
+    color, number = piece.match(/([a-zA-Z]+)(\d+)/).captures
+    "#{color.downcase}#{number}"
+  end
+
+  def []=(row, col, value)
+    @board[row][col] = value
+  end
+  def size
+    @board.size
+  end
+  def each(&block)
+    @board.each(&block)
+  end
+  def each_with_index(&block)
+    @board.each_with_index(&block)
+  end
+
   def display_board
     system 'clear' # Clear the console for a clean display (works on Unix-like systems)
 
     @board.each do |row|
-      puts row.map { |cell| cell.nil? ? '' : cell }.join(' ')
+      puts row.map { |cell| cell.nil? ? ' ' : cell }.join(' ')
     end
   end
+
 end
+
+
+
+
+
 
 # Example usage
 ludo_board = Grid.new
