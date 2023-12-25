@@ -6,7 +6,6 @@ class Grid
     @board = create_board
 
   end
-
   def create_board
     empty_cell = '◯'
     player_red = %w[r1 r2 r3 r4]

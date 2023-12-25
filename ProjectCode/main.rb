@@ -12,7 +12,6 @@ class Main
     ludo_game = Game.new
     ludo_game.play
 
-
     puts "Thanks for playing!"
   end
 end
