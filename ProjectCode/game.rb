@@ -136,7 +136,6 @@ class Game
     end
   end
 
-
   def enter_safehouse
     puts "#{current_player.color}'s piece entered the safehouse!"
     # Your logic for entering the safehouse goes here
